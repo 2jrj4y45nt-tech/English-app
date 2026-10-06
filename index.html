@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Speak 1 Min">
+  <meta name="theme-color" content="#4f46e5">
+  <title>Speak 1 Minute</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Speak 1 Minute</h1>
+      <p class="subtitle">สุ่มหัวข้อ แล้วพูดภาษาอังกฤษให้ครบ 1 นาที</p>
+    </header>
+
+    <nav class="cats" id="cats" aria-label="หมวดหัวข้อ"></nav>
+
+    <div class="stage">
+    <section class="card" aria-live="polite">
+      <span class="cat-tag" id="catTag"></span>
+      <h2 class="topic" id="topicEn">กด “สุ่มหัวข้อ” เพื่อเริ่ม</h2>
+      <p class="topic-th" id="topicTh"></p>
+
+      <button class="link-btn" id="hintToggle" type="button" hidden>💡 ดูคำถามช่วยคิด</button>
+      <ul class="hints" id="hints" hidden></ul>
+    </section>
+
+    <div class="side">
+    <section class="timer-wrap">
+      <div class="timer" id="timer">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="track" cx="60" cy="60" r="54"></circle>
+          <circle class="progress" id="ring" cx="60" cy="60" r="54"></circle>
+        </svg>
+        <div class="time" id="time" role="timer" aria-live="off">1:00</div>
+      </div>
+      <p class="status" id="status">พร้อมแล้วกด “เริ่มพูด”</p>
+    </section>
+
+    <section class="controls">
+      <button class="btn secondary" id="shuffleBtn" type="button">🎲 สุ่มหัวข้อ</button>
+      <button class="btn primary" id="startBtn" type="button">▶ เริ่มพูด</button>
+      <button class="btn ghost" id="resetBtn" type="button">↺ เริ่มใหม่</button>
+    </section>
+    </div>
+    </div>
+
+    <footer class="foot">
+      <span id="countText">วันนี้ฝึกไปแล้ว 0 ครั้ง</span>
+    </footer>
+  </main>
+
+  <script src="topics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

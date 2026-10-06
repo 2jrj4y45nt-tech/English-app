@@ -1,0 +1,198 @@
+:root {
+  --bg: #f4f5fb;
+  --surface: #ffffff;
+  --text: #1f2333;
+  --muted: #6b7088;
+  --primary: #4f46e5;
+  --primary-text: #ffffff;
+  --accent: #f59e0b;
+  --danger: #ef4444;
+  --track: #e3e5f0;
+  --chip: #e9eafb;
+  --shadow: 0 8px 24px rgba(31, 35, 51, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12131a;
+    --surface: #1d1f2b;
+    --text: #eef0f8;
+    --muted: #9a9fb8;
+    --primary: #818cf8;
+    --primary-text: #12131a;
+    --track: #2c2f40;
+    --chip: #2a2c3d;
+    --shadow: none;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Thonburi", "Segoe UI", sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  max-width: 760px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding: calc(20px + env(safe-area-inset-top)) calc(20px + env(safe-area-inset-right))
+           calc(20px + env(safe-area-inset-bottom)) calc(20px + env(safe-area-inset-left));
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.top { text-align: center; }
+.top h1 { margin: 0; font-size: 2rem; letter-spacing: -0.02em; }
+.subtitle { margin: 4px 0 0; color: var(--muted); }
+
+/* หมวดหัวข้อ */
+.cats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.chip {
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  min-height: 44px;
+  font: inherit;
+  font-size: 0.95rem;
+  background: var(--chip);
+  color: var(--text);
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
+/* การ์ดหัวข้อ */
+.card {
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.cat-tag {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+.topic {
+  margin: 8px 0;
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  line-height: 1.25;
+}
+.topic-th {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+.link-btn {
+  margin-top: 16px;
+  border: 0;
+  background: none;
+  color: var(--primary);
+  font: inherit;
+  padding: 10px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.hints {
+  text-align: left;
+  margin: 8px auto 0;
+  max-width: 520px;
+  padding-left: 1.4em;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+/* ตัวจับเวลา */
+.timer-wrap { text-align: center; }
+.timer {
+  position: relative;
+  width: min(260px, 60vw);
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.timer circle { fill: none; stroke-width: 9; }
+.track { stroke: var(--track); }
+.progress {
+  stroke: var(--primary);
+  stroke-linecap: round;
+  transition: stroke 0.3s;
+}
+.timer.warn .progress { stroke: var(--accent); }
+.timer.done .progress { stroke: var(--danger); }
+.time {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.status { margin: 12px 0 0; color: var(--muted); min-height: 1.4em; font-size: 1.05rem; }
+.timer.done + .status { color: var(--danger); font-weight: 600; }
+
+/* ปุ่ม */
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  gap: 12px;
+}
+.btn {
+  border: 0;
+  border-radius: 16px;
+  min-height: 64px;
+  padding: 12px;
+  font: inherit;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.btn:active { transform: scale(0.97); }
+.btn:disabled { opacity: 0.45; cursor: default; transform: none; }
+.primary { background: var(--primary); color: var(--primary-text); }
+.secondary { background: var(--chip); color: var(--text); }
+.ghost { background: transparent; color: var(--muted); border: 2px solid var(--track); }
+
+.foot { text-align: center; color: var(--muted); font-size: 0.9rem; margin-top: auto; }
+
+@media (max-width: 480px) {
+  .controls { grid-template-columns: 1fr 1fr; }
+  .controls .primary { grid-column: 1 / -1; order: -1; }
+}
+
+.stage { display: flex; flex-direction: column; gap: 20px; }
+.side { display: flex; flex-direction: column; gap: 20px; }
+
+/* iPad แนวนอน: หัวข้ออยู่ซ้าย ตัวจับเวลาและปุ่มอยู่ขวา ไม่ต้องเลื่อนจอ */
+@media (orientation: landscape) and (min-width: 900px) {
+  .app { max-width: 1180px; }
+  .stage {
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+  .stage .card { flex: 1.3; }
+  .stage .side { flex: 1; }
+  .timer { width: min(240px, 28vw); }
+  .controls { grid-template-columns: 1fr 1fr; }
+  .controls .primary { grid-column: 1 / -1; order: -1; }
+}
